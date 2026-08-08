@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AutoDevAI</title>
+
+    <link rel="stylesheet"
+          href="/static/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- ========================= -->
+    <!-- Sidebar                   -->
+    <!-- ========================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+
+                AI
+
+            </div>
+
+            <div>
+
+                <h2>AutoDevAI</h2>
+
+                <small>
+                    Repository Intelligence
+                </small>
+
+            </div>
+
+        </div>
+
+        <nav>
+
+<a href="#dashboard" class="nav-link active">
+🏠 Dashboard
+</a>
+
+<a href="#repository" class="nav-link">
+📁 Repository
+</a>
+
+<a href="#recommendations" class="nav-link">
+🤖 AI Review
+</a>
+
+<a href="#history" class="nav-link">
+🕒 History
+</a>
+
+<a href="#charts" class="nav-link">
+📊 Analytics
+</a>
+
+<a href="#footer" class="nav-link">
+⚙ Settings
+</a>
+
+</nav>
+
+    </aside>
+
+    <!-- ========================= -->
+    <!-- Main Content              -->
+    <!-- ========================= -->
+
+    <main class="content">
+    <div id="dashboard"></div>
+        <!-- ========================= -->
+        <!-- Hero -->
+        <!-- ========================= -->
+
+        <section class="hero">
+
+            <div class="hero-left">
+
+                <span class="hero-tag">
+
+                    AI-FIRST CODE REVIEW PLATFORM
+
+                </span>
+
+                <h1>
+
+                    Repository Intelligence
+
+                </h1>
+
+                <p>
+
+                    Scan GitHub repositories with AI-powered
+                    code review, security analysis,
+                    testing insights and documentation scoring.
+
+                </p>
+
+                <!-- Search -->
+
+                <div class="hero-search">
+
+                    <input
+
+                        id="repoInput"
+
+                        type="text"
+
+                        placeholder="Paste GitHub Repository URL..."
+
+                    >
+
+                    <button
+
+                        id="scanButton">
+
+                        Analyze Repository
+
+                    </button>
+
+                </div>
+                <section id="repository" class="repository-preview">
+
+                    <div class="repository-layout">
+
+    <div class="repository-sidebar">
+
+        <div class="repo-toolbar">
+
+            <input
+                id="repoSearch"
+                type="text"
+                placeholder="Search files..."
+            >
+
+        </div>
+
+        <div
+            id="repositoryTree"
+            class="repository-tree">
+
+        </div>
+
+    </div>
+
+    <div class="repository-content">
+
+        <div class="viewer-header">
+
+    <div class="viewer-left">
+
+        <div id="fileBreadcrumb">
+
+            Repository
+
+        </div>
+
+    </div>
+
+    <div class="viewer-actions">
+
+        <button id="copyButton">
+
+            📋 Copy
+
+        </button>
+
+        <button id="downloadButton">
+
+            ⬇ Download
+
+        </button>
+
+    </div>
+
+</div>
+
+        <div class="code-container">
+
+    <div id="lineNumbers">
+
+        1
+
+    </div>
+
+   <div
+    id="fileViewer"
+    class="monaco-viewer">
+
+</div>
+
+</div>
+
+    </div>
+
+</div>
+                
+                </section>
+
+            </div>
+
+            <!-- Health -->
+
+            <div class="hero-right">
+
+                <div class="health-card">
+
+                    <div class="health-ring">
+
+                        <div class="health-value"
+
+                             id="healthScore">
+
+                            0%
+
+                        </div>
+
+                    </div>
+
+                    <h3>
+
+                        Repository Health
+
+                    </h3>
+
+                    <p id="healthStatus">
+
+Ready
+
+</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ========================= -->
+        <!-- Scan Progress -->
+        <!-- ========================= -->
+
+        <section class="scan-progress-card">
+
+            <div class="scan-header">
+
+                <h3>
+
+                    Live Repository Analysis
+
+                </h3>
+
+                <span id="scanStatus">
+
+                    Ready
+
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+
+                    id="progressBar"
+
+                    class="progress-fill">
+
+                </div>
+
+            </div>
+
+            <div class="scan-steps">
+
+                <div id="step1">
+
+                    Planner
+
+                </div>
+
+                <div id="step2">
+
+                    Reviewer
+
+                </div>
+
+                <div id="step3">
+
+                    Security
+
+                </div>
+
+                <div id="step4">
+
+                    Testing
+
+                </div>
+
+                <div id="step5">
+
+                    Documentation
+
+                </div>
+
+                <div id="step6">
+
+                    Report
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ========================= -->
+        <!-- KPI Cards -->
+        <!-- ========================= -->
+
+        <section class="dashboard-grid">
+
+            <div class="metric-card">
+
+                <h4>
+
+                    Repository
+
+                </h4>
+
+                <h2 id="repo">
+
+                    Loading...
+
+                </h2>
+
+            </div>
+
+            <div class="metric-card">
+
+                <h4>
+
+                    Language
+
+                </h4>
+
+                <h2 id="language">
+
+                    --
+
+                </h2>
+
+            </div>
+
+            <div class="metric-card">
+
+                <h4>
+
+                    Files
+
+                </h4>
+
+                <h2 id="files">
+
+                    --
+
+                </h2>
+
+            </div>
+
+            <div class="metric-card">
+
+                <h4>
+
+                    Security
+
+                </h4>
+
+                <h2 id="security-score">
+
+                    --
+
+                </h2>
+
+            </div>
+
+            <div class="metric-card">
+
+                <h4>
+
+                    Documentation
+
+                </h4>
+
+                <h2 id="documentation-score">
+
+                    --
+
+                </h2>
+
+            </div>
+
+        </section>
+
+        <!-- ======================================= -->
+<!-- Repository Analytics -->
+<!-- ======================================= -->
+
+<section id="analytics" class="analytics-grid">
+    <div class="glass-card large-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>Repository Quality</h2>
+
+                <p>
+                    Overall AI quality assessment
+                </p>
+
+            </div>
+
+            <span id="qualityScore" class="score-badge">0%</span>
+
+        </div>
+
+        <canvas id="scoreChart"></canvas>
+
+    </div>
+
+    <div class="glass-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>Quality Breakdown</h2>
+
+                <p>
+
+                    Security, Testing & Documentation
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="quality-bars">
+
+            <div class="quality-item">
+
+                <div class="quality-label">
+
+                    <span>🛡 Security</span>
+
+                    <span id="securityLabel">
+
+                        0%
+
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div
+                        class="fill green"
+                        style="width:0%;">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="quality-item">
+
+                <div class="quality-label">
+
+                    <span>🧪 Testing</span>
+
+                    <span id="testingLabel">
+
+                        0%
+
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div
+                        class="fill blue"
+                        style="width:0%;">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="quality-item">
+
+                <div class="quality-label">
+
+                    <span>📚 Documentation</span>
+
+                    <span id="documentationLabel">
+
+                        0%
+
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div
+                        class="fill purple"
+                        style="width:0%;">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="quality-item">
+
+                <div class="quality-label">
+
+                    <span>⚡ Performance</span>
+
+                    <span id="performanceLabel">
+
+                        0%
+
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div
+                        class="fill orange"
+                        style="width:0%;">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ======================================= -->
+<!-- AI Findings -->
+<!-- ======================================= -->
+
+<section class="glass-card findings-card">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+
+                AI Findings
+
+            </h2>
+
+            <p>
+
+                Smart issue detection
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <table class="modern-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Severity</th>
+
+                <th>File</th>
+
+                <th>Category</th>
+
+                <th>Confidence</th>
+
+                <th>Recommendation</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody  id="findingsTable">
+
+        </tbody>
+
+    </table>
+
+</section>
+
+
+
+<div
+style="text-align:center;margin:30px 0;">
+
+<button id="downloadReport" class="download-report">
+
+    <i class="fa-solid fa-file-arrow-down"></i>
+
+    Download Professional PDF Report
+
+</button>
+
+</div>
+<!-- ======================================= -->
+<!-- AI Recommendations -->
+<!-- ======================================= -->
+
+<section
+id="recommendations"
+class="recommendation-panel">
+
+    <div class="recommendation-header">
+
+        <div>
+
+            <h2>
+
+                🤖 AI Recommendations
+
+            </h2>
+
+            <p>
+
+                Personalized improvement suggestions
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+    <div
+    id="recommendationGrid"
+    class="recommendation-grid">
+
+</div>
+</section>
+
+
+<!-- ======================================= -->
+<!-- Footer -->
+<!-- ======================================= -->
+
+<footer id="footer" class="footer">
+
+    <div class="footer-left">
+
+        <div class="footer-logo">
+
+            <div class="footer-logo-icon">
+
+                AI
+
+            </div>
+
+            <div>
+
+                <h3>
+
+                    AutoDevAI
+
+                </h3>
+
+                <small>
+
+                    AI Powered Repository Intelligence Platform
+
+                </small>
+
+            </div>
+
+        </div>
+
+        <p>
+
+            Analyze repositories using AI-powered code review,
+            security analysis, documentation insights,
+            testing metrics and repository health scoring.
+
+        </p>
+
+    </div>
+
+    <div class="footer-links">
+
+        <div>
+
+            <h4>
+
+                Product
+
+            </h4>
+
+            <a href="#dashboard">
+
+                Dashboard
+
+            </a>
+
+            <a href="#analytics">
+
+                Analytics
+
+            </a>
+
+            <a href="#history">
+
+                History
+
+            </a>
+
+        </div>
+
+        <div>
+
+            <h4>
+
+                Resources
+
+            </h4>
+
+            <a href="#recommendations">
+AI Recommendations
+</a>
+
+            <a href="#repository">
+Repository
+</a>
+
+            <a href="https://github.com"
+target="_blank">
+
+GitHub
+
+</a>
+
+        </div>
+
+        <div>
+
+            <h4>
+
+                Contact
+
+            </h4>
+
+            <a href="https://linkedin.com">
+
+LinkedIn
+
+</a>
+
+            <a href="mailto:ishanjaiswal01i0gmail.com">
+
+Email
+
+</a>
+
+            <a href="#footer">
+
+Support
+
+</a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<div class="copyright">
+
+    © 2026 AutoDevAI
+
+    ·
+
+    Built using FastAPI + Gemini + SQLite
+
+</div>
+
+</main>
+
+</div>
+
+<script src="/static/js/scanner.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="/static/js/dashboard.js"></script>
+
+</body>
+
+</html>

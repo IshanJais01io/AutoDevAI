@@ -1,6 +1,9 @@
 from core.shared_memory import SharedMemory
 from core.workflow import Workflow
-
+from storage.database import initialize_database
+from core.pdf_report import generate_pdf
+from agents.json_export import JSONExportAgent
+from agents.html_report import HTMLReportAgent
 from agents.planner import PlannerAgent
 from agents.reviewer import ReviewerAgent
 from agents.tester import TesterAgent
@@ -10,120 +13,79 @@ from agents.final_report import FinalReportAgent
 
 from tools.github import GitHubTool
 
-
-memory = SharedMemory()
-
-github = GitHubTool()
-
-
-url = input(
-    "Enter GitHub Repository URL: "
+from core.settings import (
+    USE_CREWAI,
+    initialize
 )
 
 
-repo_path = github.clone_repository(
-    url
-)
+def run_pipeline(repository_url: str):
+
+    initialize_database()
+
+    initialize()
+
+    memory = SharedMemory()
+
+    github = GitHubTool()
+
+    repo_path = github.clone_repository(repository_url)
+
+    memory.update(
+        "repo_path",
+        repo_path
+    )
+
+    if not USE_CREWAI:
+
+        workflow = Workflow(memory)
+
+        workflow.add_agent(PlannerAgent())
+        workflow.add_agent(ReviewerAgent())
+        workflow.add_agent(TesterAgent())
+        workflow.add_agent(DocumentationAgent())
+        workflow.add_agent(SecurityAgent())
+        workflow.add_agent(FinalReportAgent())
+        workflow.add_agent(JSONExportAgent())
+        workflow.add_agent(HTMLReportAgent())
+
+        workflow.run()
+        generate_pdf()
+        return memory.get_all()
+
+    else:
+
+        from crew.crew import AutoDevCrew
+
+        crew = AutoDevCrew().build(
+            repository=repo_path
+        )
+
+        result = crew.kickoff()
+
+        memory.update(
+            "crew_result",
+            str(result)
+        )
+
+        generate_pdf()
+        return memory.get_all()
 
 
-memory.update(
-    "repo_path",
-    repo_path
-)
+if __name__ == "__main__":
 
+    url = input(
+        "Enter GitHub Repository URL: "
+    )
 
-workflow = Workflow(
-    memory
-)
+    result = run_pipeline(url)
 
+    print()
 
-planner = PlannerAgent()
+    print("=" * 60)
 
-reviewer = ReviewerAgent()
+    print("FINAL MEMORY")
 
-tester = TesterAgent()
+    print("=" * 60)
 
-documentation = DocumentationAgent()
-
-security = SecurityAgent()
-
-final_report = FinalReportAgent()
-
-
-workflow.add_agent(
-    planner
-)
-
-workflow.add_agent(
-    reviewer
-)
-
-workflow.add_agent(
-    tester
-)
-
-workflow.add_agent(
-    documentation
-)
-
-workflow.add_agent(
-    security
-)
-
-workflow.add_agent(
-    final_report
-)
-
-
-workflow.run()
-
-
-print("\n====================================")
-print("AutoDevAI Execution Completed")
-print("====================================")
-
-print(
-    f"Repository : {memory.get('repo_path')}"
-)
-
-print(
-    f"Language   : {memory.get('language')}"
-)
-
-files = memory.get("files") or []
-
-print(
-    f"Files      : {len(files)}"
-)
-
-print()
-
-print("Reports Generated")
-
-print("-----------------")
-
-print("Review Report         : Available")
-
-print("Testing Report        : Available")
-
-print("Documentation Report  : Available")
-
-print("Security Report       : Available")
-
-print("Final Report          : Available")
-
-print()
-
-print("Reports Folder")
-
-print("-----------------")
-
-print("reports/")
-print("├── documentation_report.md")
-print("├── testing_report.md")
-print("├── security_report.md")
-print("└── final_report.md")
-
-print()
-
-print("Workflow completed successfully.")
+    print(result)

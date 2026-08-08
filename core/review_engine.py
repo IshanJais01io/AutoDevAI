@@ -1,29 +1,57 @@
+from core.settings import MAX_BATCH_CHARACTERS
 import os
+
+from prompts.reviewer import build_review_prompt
 
 
 class ReviewEngine:
 
     DEFAULT_EXTENSIONS = {
         ".py",
-        ".md",
-        ".txt",
+        ".js",
+        ".ts",
+        ".jsx",
+        ".tsx",
+        ".java",
+        ".kt",
+        ".go",
+        ".rs",
+        ".cpp",
+        ".c",
+        ".h",
+        ".hpp",
+        ".cs",
+        ".php",
+        ".rb",
+        ".swift",
+        ".scala",
+        ".sql",
+        ".html",
+        ".css",
+        ".scss",
+        ".vue",
         ".json",
         ".yaml",
         ".yml",
         ".toml",
         ".ini",
-        ".cfg"
+        ".cfg",
+        ".env",
+        ".md",
+        ".txt",
+        ".xml",
+        ".sh"
     }
 
     def __init__(
         self,
         repo_path,
         files,
-        max_batch_characters=25000
+        max_batch_characters=MAX_BATCH_CHARACTERS
     ):
 
         self.repo_path = repo_path
-        self.files = files
+        self.files = sorted(files)
         self.max_batch_characters = max_batch_characters
 
     def create_batches(self):
@@ -36,9 +64,7 @@ class ReviewEngine:
 
         for relative_path in self.files:
 
-            if not self.is_reviewable(
-                relative_path
-            ):
+            if not self.is_reviewable(relative_path):
                 continue
 
             absolute_path = os.path.join(
@@ -46,18 +72,25 @@ class ReviewEngine:
                 relative_path
             )
 
+            if not os.path.isfile(absolute_path):
+                continue
+
             try:
 
                 with open(
                     absolute_path,
                     "r",
-                    encoding="utf-8"
+                    encoding="utf-8",
+                    errors="ignore"
                 ) as file:
 
                     content = file.read()
 
             except Exception:
 
+                continue
+
+            if not content.strip():
                 continue
 
             section = self.build_section(
@@ -68,15 +101,12 @@ class ReviewEngine:
             section_size = len(section)
 
             if (
-                current_batch
-                and
-                current_size + section_size
-                > self.max_batch_characters
+                current_batch and
+                current_size + section_size >
+                self.max_batch_characters
             ):
 
-                batches.append(
-                    current_batch
-                )
+                batches.append(current_batch)
 
                 current_batch = []
 
@@ -88,32 +118,14 @@ class ReviewEngine:
 
         if current_batch:
 
-            batches.append(
-                current_batch
-            )
+            batches.append(current_batch)
 
         return batches
 
-    def build_prompt(
-        self,
-        batch
-    ):
+    def build_prompt(self, batch):
 
-        return (
-            "You are a Senior Software Engineer.\n\n"
-            "Perform a production-grade repository review.\n\n"
-            "Review every file carefully.\n\n"
-            "Focus on:\n"
-            "- Bugs\n"
-            "- Code Quality\n"
-            "- Architecture\n"
-            "- Performance\n"
-            "- Security\n"
-            "- Best Practices\n"
-            "- Maintainability\n"
-            "- Refactoring Suggestions\n\n"
-            "Return the review in Markdown.\n\n"
-            + "\n\n".join(batch)
+        return build_review_prompt(
+            "\n\n".join(batch)
         )
 
     def build_section(
@@ -123,8 +135,13 @@ class ReviewEngine:
     ):
 
         return (
-            f"FILE: {filename}\n\n"
-            f"{content}"
+            "=" * 80 +
+            "\nFILE: " +
+            filename +
+            "\n" +
+            "=" * 80 +
+            "\n\n" +
+            content
         )
 
     def is_reviewable(

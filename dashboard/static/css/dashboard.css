@@ -1,0 +1,862 @@
+/* ==========================================================
+   AutoDevAI Dashboard V2
+   Premium Dashboard Styling
+==========================================================*/
+
+/* ==========================================================
+   Hero
+==========================================================*/
+
+.hero{
+
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:42px;
+
+    align-items:center;
+
+}
+
+.hero-left{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.hero-badge{
+
+    display:inline-flex;
+
+    width:max-content;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    font-size:13px;
+    font-weight:700;
+
+    color:#7DD3FC;
+
+    background:rgba(59,130,246,.12);
+
+    border:1px solid rgba(59,130,246,.20);
+
+    margin-bottom:26px;
+
+}
+
+.hero h1{
+
+    font-size:72px;
+
+    line-height:1;
+
+    font-weight:900;
+
+    letter-spacing:-3px;
+
+    margin-bottom:22px;
+
+}
+
+.hero p{
+
+    font-size:18px;
+
+    color:#94A3B8;
+
+    line-height:1.8;
+
+    max-width:720px;
+
+}
+
+/* ==========================================================
+Repository Search
+==========================================================*/
+
+.repo-search{
+
+    margin-top:40px;
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:center;
+
+}
+
+.repo-search input{
+
+    flex:1;
+
+    height:68px;
+
+    padding:0 24px;
+
+    border:none;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    font-size:16px;
+
+    transition:.35s;
+
+}
+
+.repo-search input:focus{
+
+    outline:none;
+
+    border-color:#4F8CFF;
+
+    box-shadow:
+
+    0 0 0 5px rgba(79,140,255,.18);
+
+}
+
+.repo-search button{
+
+    height:68px;
+
+    padding:0 34px;
+
+    border:none;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:white;
+
+    background:
+
+    linear-gradient(
+    135deg,
+    #3B82F6,
+    #7C3AED
+    );
+
+    box-shadow:
+
+    0 20px 45px rgba(59,130,246,.35);
+
+    transition:.35s;
+
+}
+
+.repo-search button:hover{
+
+    transform:
+    translateY(-4px)
+    scale(1.03);
+
+}
+
+/* ==========================================================
+Mini Cards
+==========================================================*/
+
+.hero-stats{
+
+    margin-top:42px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:18px;
+
+}
+
+.mini-card{
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    transition:.35s;
+
+}
+
+.mini-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#3B82F6;
+
+}
+
+.mini-card h3{
+
+    font-size:28px;
+
+}
+
+.mini-card span{
+
+    color:#94A3B8;
+
+}
+
+/* ==========================================================
+Health Circle
+==========================================================*/
+
+.score-circle{
+
+    width:320px;
+
+    height:320px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:
+
+    conic-gradient(
+
+        #22C55E 0deg,
+
+        #22C55E 330deg,
+
+        rgba(255,255,255,.08) 330deg
+
+    );
+
+    padding:18px;
+
+    animation:rotateGlow 8s linear infinite;
+
+}
+
+.circle-inner{
+
+    width:100%;
+
+    height:100%;
+
+    border-radius:50%;
+
+    background:#111827;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.circle-inner h1{
+
+    font-size:76px;
+
+}
+
+.circle-inner span{
+
+    color:#94A3B8;
+
+}
+
+@keyframes rotateGlow{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* ==========================================================
+Glass Cards
+==========================================================*/
+
+.glass-card{
+
+    background:
+
+    linear-gradient(
+        180deg,
+        rgba(255,255,255,.05),
+        rgba(255,255,255,.02)
+    );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:26px;
+
+    padding:28px;
+
+    backdrop-filter:blur(20px);
+
+    transition:.35s;
+
+}
+
+.glass-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+
+    0 30px 70px rgba(0,0,0,.35);
+
+}
+
+/* ==========================================================
+Analytics Grid
+==========================================================*/
+
+.analytics-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:24px;
+
+}
+
+/* ==========================================================
+Card Header
+==========================================================*/
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:28px;
+
+}
+
+.card-header h2{
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.card-header button{
+
+    background:rgba(255,255,255,.05);
+
+    border:none;
+
+    color:white;
+
+    padding:10px 16px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+}
+
+/* ==========================================================
+AI Assistant
+==========================================================*/
+
+.ai-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.ai-card::before{
+
+content:"";
+
+position:absolute;
+
+right:-60px;
+
+top:-60px;
+
+width:180px;
+
+height:180px;
+
+background:
+
+radial-gradient(
+
+circle,
+
+rgba(59,130,246,.35),
+
+transparent 70%
+
+);
+
+}
+
+.ai-header{
+
+font-size:22px;
+
+font-weight:700;
+
+margin-bottom:28px;
+
+}
+
+.recommendation{
+
+padding:18px;
+
+border-radius:18px;
+
+margin-bottom:18px;
+
+background:rgba(255,255,255,.04);
+
+}
+
+.recommendation h3{
+
+margin-bottom:8px;
+
+}
+
+.ai-card button{
+
+margin-top:18px;
+
+width:100%;
+
+height:54px;
+
+border:none;
+
+border-radius:14px;
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#3B82F6,
+
+#8B5CF6
+
+);
+
+color:white;
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+/* ==========================================================
+Activity
+==========================================================*/
+
+.activity{
+
+display:flex;
+
+flex-direction:column;
+
+gap:16px;
+
+}
+
+.activity div{
+
+padding:16px;
+
+border-radius:14px;
+
+background:rgba(255,255,255,.04);
+
+}
+
+/* ==========================================================
+Modern Table
+==========================================================*/
+
+.modern-table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+.modern-table th{
+
+padding:18px;
+
+text-align:left;
+
+font-size:14px;
+
+color:#94A3B8;
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.modern-table td{
+
+padding:18px;
+
+border-bottom:1px solid rgba(255,255,255,.05);
+
+}
+
+.modern-table tbody tr{
+
+transition:.3s;
+
+}
+
+.modern-table tbody tr:hover{
+
+background:rgba(59,130,246,.08);
+
+}
+
+/* ==========================================================
+Scan Card
+==========================================================*/
+
+.scan-card{
+
+padding:30px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+.scan-top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:22px;
+
+}
+
+.progress{
+
+height:14px;
+
+border-radius:999px;
+
+overflow:hidden;
+
+background:rgba(255,255,255,.08);
+
+}
+
+.progress-fill{
+
+width:0;
+
+height:100%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#3B82F6,
+
+#22C55E
+
+);
+
+transition:width .4s;
+
+}
+
+.scan-steps{
+
+display:grid;
+
+grid-template-columns:repeat(6,1fr);
+
+gap:12px;
+
+margin-top:20px;
+
+}
+
+.scan-steps div{
+
+padding:12px;
+
+border-radius:12px;
+
+text-align:center;
+
+background:rgba(255,255,255,.04);
+
+font-size:13px;
+
+}
+
+/* ==========================================================
+Responsive
+==========================================================*/
+
+@media(max-width:1200px){
+
+.analytics-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.hero{
+
+grid-template-columns:1fr;
+
+}
+
+.hero-stats{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.repo-search{
+
+flex-direction:column;
+
+}
+
+.repo-search button{
+
+width:100%;
+
+}
+
+.hero h1{
+
+font-size:48px;
+
+}
+
+.hero-stats{
+
+grid-template-columns:1fr;
+
+}
+
+.scan-steps{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.score-circle{
+
+width:250px;
+height:250px;
+
+}
+
+.circle-inner h1{
+
+font-size:52px;
+
+}
+
+}
+
+
+button:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+/* ==========================================================
+   Professional Download Report Button
+==========================================================*/
+.download-report{
+
+    position:relative;
+    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+
+    width:560px;
+    max-width:100%;
+
+    margin:40px auto;
+
+    padding:22px 36px;
+
+    border:1px solid rgba(96,165,250,.35);
+
+    border-radius:24px;
+
+    cursor:pointer;
+
+    font-size:20px;
+    font-weight:800;
+
+    letter-spacing:.4px;
+
+    color:#ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb 0%,
+            #4f46e5 50%,
+            #7c3aed 100%
+        );
+
+    box-shadow:
+        0 18px 45px rgba(37,99,235,.30),
+        inset 0 1px 0 rgba(255,255,255,.20);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.download-report::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:70%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.22),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+
+    transition:left .65s ease;
+}
+
+.download-report:hover{
+
+    transform:translateY(-5px) scale(1.015);
+
+    border-color:rgba(147,197,253,.65);
+
+    box-shadow:
+        0 28px 65px rgba(37,99,235,.42),
+        0 0 35px rgba(79,70,229,.20),
+        inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+.download-report:hover::before{
+
+    left:140%;
+}
+
+.download-report:active{
+
+    transform:translateY(-1px) scale(.99);
+
+}
+
+.download-report i{
+
+    position:relative;
+    z-index:2;
+
+    font-size:26px;
+
+    color:#ffffff;
+
+}
+
+.download-report{
+
+    text-shadow:
+        0 1px 2px rgba(0,0,0,.25);
+}
+
+@media(max-width:768px){
+
+.download-report{
+
+    width:100%;
+    max-width:100%;
+
+    font-size:17px;
+
+    padding:18px 20px;
+
+    margin:30px auto;
+
+}
+
+}

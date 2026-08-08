@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}AutoDevAI{% endblock %}</title>
+
+    <link rel="stylesheet" href="/static/css/layout.css">
+    <link rel="stylesheet" href="/static/css/sidebar.css">
+    <link rel="stylesheet" href="/static/css/cards.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/animations.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/css.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+
+<style>
+.download-report{
+    position:relative !important;
+    overflow:hidden !important;
+
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:14px !important;
+
+    width:560px !important;
+    max-width:90% !important;
+
+    margin:40px auto !important;
+    padding:22px 36px !important;
+
+    border:1px solid rgba(96,165,250,.45) !important;
+    border-radius:24px !important;
+
+    cursor:pointer !important;
+
+    font-family:Inter, sans-serif !important;
+    font-size:20px !important;
+    font-weight:800 !important;
+    letter-spacing:.3px !important;
+
+    color:#ffffff !important;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5,
+        #7c3aed
+    ) !important;
+
+    box-shadow:
+        0 18px 45px rgba(37,99,235,.35),
+        inset 0 1px 0 rgba(255,255,255,.20) !important;
+
+    text-shadow:0 1px 2px rgba(0,0,0,.25) !important;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease !important;
+}
+
+.download-report:hover{
+    transform:translateY(-5px) scale(1.015) !important;
+
+    border-color:rgba(147,197,253,.8) !important;
+
+    box-shadow:
+        0 28px 65px rgba(37,99,235,.45),
+        0 0 35px rgba(124,58,237,.25),
+        inset 0 1px 0 rgba(255,255,255,.25) !important;
+}
+
+.download-report:active{
+    transform:translateY(-1px) scale(.99) !important;
+}
+
+.download-report i{
+    font-size:26px !important;
+    color:#ffffff !important;
+}
+
+@media(max-width:768px){
+
+    .download-report{
+        width:90% !important;
+        max-width:90% !important;
+        padding:18px 20px !important;
+        font-size:17px !important;
+    }
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ========================= -->
+    <!-- Sidebar -->
+    <!-- ========================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+
+                AI
+
+            </div>
+
+            <div>
+
+                <h2>AutoDevAI</h2>
+
+                <span>Repository Intelligence</span>
+
+            </div>
+
+        </div>
+
+        <nav>
+
+    <a class="active" data-page="dashboard">
+        Dashboard
+    </a>
+
+    <a data-page="review">
+        AI Review
+    </a>
+
+    <a data-page="security">
+        Security
+    </a>
+
+    <a data-page="testing">
+        Testing
+    </a>
+
+    <a data-page="documentation">
+        Documentation
+    </a>
+
+    <a data-page="reports">
+        Reports
+    </a>
+
+    <a data-page="history">
+        History
+    </a>
+
+    <a data-page="settings">
+        Settings
+    </a>
+
+</nav>
+
+        <div class="sidebar-footer">
+
+            <small>
+
+                AutoDevAI v2
+
+            </small>
+
+        </div>
+
+    </aside>
+
+    <!-- ========================= -->
+    <!-- Main -->
+    <!-- ========================= -->
+
+    <div class="main-container">
+
+        <!-- Top Navbar -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    placeholder="Search repositories..."
+                >
+
+            </div>
+
+            <div class="top-actions">
+
+                <button class="icon-btn">
+
+                    🔔
+
+                </button>
+
+                <button class="icon-btn">
+
+                    🕘
+
+                </button>
+
+                <button class="profile">
+
+                    AI
+
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- Main Content -->
+
+        <main class="page-content">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </main>
+
+        <!-- Footer -->
+
+        <footer class="footer">
+
+            <div>
+
+                <strong>AutoDevAI</strong>
+
+                <p>
+                    AI-native Repository Intelligence Platform
+                </p>
+
+            </div>
+
+            <div>
+
+                <a href="#">Documentation</a>
+
+                <a href="#">GitHub</a>
+
+                <a href="#">API</a>
+
+                <a href="#">Privacy</a>
+
+                <a href="#">Contact</a>
+
+            </div>
+
+            <div>
+
+                Version 2.0
+
+            </div>
+
+        </footer>
+
+    </div>
+
+</div>
+
+<script src="/static/js/dashboard.js"></script>
+<script src="/static/js/charts.js"></script>
+<script src="/static/js/scanner.js"></script>
+<script src="/static/js/sidebar.js"></script>
+
+</body>
+</html>

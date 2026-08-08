@@ -78,5 +78,3 @@ REQUEST_TIMEOUT = int(
 # Development Mode
 # None = Review all Python files
 # Integer = Review only first N Python files
-
-MAX_REVIEW_FILES = 20

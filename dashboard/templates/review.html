@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page">
+
+    <div class="page-header">
+
+        <div>
+            <h1>🤖 AI Code Review</h1>
+            <p>
+                Intelligent repository analysis powered by AutoDevAI
+            </p>
+        </div>
+
+        <button class="primary-btn">
+            Generate New Review
+        </button>
+
+    </div>
+
+    <div class="grid-2">
+
+        <div class="glass-card">
+
+            <h2>Repository Summary</h2>
+
+            <p>
+                Repository health is excellent. Code quality is high with
+                minor improvements suggested around documentation,
+                testing and complexity.
+            </p>
+
+        </div>
+
+        <div class="glass-card">
+
+            <h2>AI Confidence</h2>
+
+            <div class="big-score">
+                96%
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="glass-card">
+
+        <h2>Detected Issues</h2>
+
+        <table class="modern-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Severity</th>
+
+                    <th>File</th>
+
+                    <th>Issue</th>
+
+                    <th>Recommendation</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>
+                        🔴 High
+                    </td>
+
+                    <td>
+                        database.py
+                    </td>
+
+                    <td>
+                        SQL Injection Risk
+                    </td>
+
+                    <td>
+                        Use parameterized queries.
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+                        🟡 Medium
+                    </td>
+
+                    <td>
+                        reviewer.py
+                    </td>
+
+                    <td>
+                        Long Function
+                    </td>
+
+                    <td>
+                        Break into smaller functions.
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+                        🟢 Low
+                    </td>
+
+                    <td>
+                        planner.py
+                    </td>
+
+                    <td>
+                        Duplicate Logic
+                    </td>
+
+                    <td>
+                        Refactor shared methods.
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="glass-card">
+
+        <h2>AI Suggestions</h2>
+
+        <ul class="recommend-list">
+
+            <li>Increase unit test coverage above 90%.</li>
+
+            <li>Add Python type hints.</li>
+
+            <li>Refactor large functions.</li>
+
+            <li>Improve README documentation.</li>
+
+            <li>Add CI/CD quality checks.</li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+{% endblock %}

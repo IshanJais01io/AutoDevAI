@@ -1,9 +1,19 @@
-openai>=1.0.0
-
 google-genai
 
-python-dotenv
+openai
+
+crewai
+
+gitpython
 
 pytest
 
 bandit
+
+python-dotenv
+
+fastapi
+
+uvicorn
+
+jinja2

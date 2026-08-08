@@ -1,6 +1,6 @@
 from core.review_engine import ReviewEngine
-from llm.provider import LLMProvider
-from llm.config import MAX_REVIEW_FILES
+from services.llm_service import LLMService
+from core.settings import MAX_REVIEW_FILES
 
 
 class ReviewerAgent:
@@ -9,7 +9,7 @@ class ReviewerAgent:
 
         self.name = "Reviewer Agent"
 
-        self.provider = LLMProvider()
+        self.provider = LLMService()
 
     def run(self, memory):
 

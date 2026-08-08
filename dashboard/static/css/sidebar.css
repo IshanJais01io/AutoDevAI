@@ -1,0 +1,356 @@
+/* ==========================================
+   AutoDevAI Sidebar
+========================================== */
+
+.sidebar{
+
+    width:280px;
+    height:100vh;
+
+    position:sticky;
+    top:0;
+
+    display:flex;
+    flex-direction:column;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(17,24,39,.96),
+        rgba(10,15,28,.98)
+    );
+
+    backdrop-filter:blur(24px);
+
+    border-right:1px solid rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+}
+
+/* ============================ */
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:30px 26px;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+/* ============================ */
+
+.brand-logo{
+
+    width:54px;
+    height:54px;
+
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:800;
+
+    font-size:20px;
+
+    color:white;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #4F8CFF,
+        #7C3AED
+    );
+
+    box-shadow:
+
+    0 12px 30px rgba(79,140,255,.35);
+
+    animation:logoFloat 5s ease infinite;
+
+}
+
+@keyframes logoFloat{
+
+0%{transform:translateY(0);}
+50%{transform:translateY(-5px);}
+100%{transform:translateY(0);}
+
+}
+
+/* ============================ */
+
+.brand h2{
+
+    font-size:22px;
+    font-weight:800;
+
+}
+
+.brand span{
+
+    color:#94A3B8;
+    font-size:13px;
+
+}
+
+/* ============================ */
+
+.sidebar nav{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+
+    padding:24px 18px;
+
+}
+
+/* ============================ */
+
+.sidebar nav a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:15px 18px;
+
+    border-radius:16px;
+
+    text-decoration:none;
+
+    color:#B8C1D1;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* ============================ */
+
+.sidebar nav a::before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+top:0;
+
+width:0;
+height:100%;
+
+background:
+
+linear-gradient(
+90deg,
+rgba(79,140,255,.18),
+transparent
+);
+
+transition:.35s;
+
+}
+
+/* ============================ */
+
+.sidebar nav a:hover{
+
+background:
+
+rgba(79,140,255,.08);
+
+transform:translateX(6px);
+
+color:white;
+
+}
+
+.sidebar nav a:hover::before{
+
+width:100%;
+
+}
+
+/* ============================ */
+
+.sidebar nav a.active{
+
+background:
+
+linear-gradient(
+90deg,
+rgba(79,140,255,.18),
+rgba(124,58,237,.10)
+);
+
+border:1px solid rgba(79,140,255,.18);
+
+color:white;
+
+}
+
+/* ============================ */
+
+.sidebar nav a.active::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:15%;
+
+width:4px;
+
+height:70%;
+
+border-radius:10px;
+
+background:#4F8CFF;
+
+box-shadow:
+
+0 0 15px #4F8CFF;
+
+}
+
+/* ============================ */
+
+.sidebar nav span{
+
+font-size:19px;
+
+transition:.3s;
+
+}
+
+.sidebar nav a:hover span{
+
+transform:scale(1.18);
+
+}
+
+/* ============================ */
+
+.sidebar-footer{
+
+margin-top:auto;
+
+padding:26px;
+
+border-top:1px solid rgba(255,255,255,.06);
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+}
+
+/* ============================ */
+
+.sidebar-footer small{
+
+color:#64748B;
+
+font-size:13px;
+
+}
+
+/* ============================ */
+
+.sidebar-footer::before{
+
+content:"";
+
+display:block;
+
+height:1px;
+
+background:
+
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.15),
+transparent
+);
+
+margin-bottom:16px;
+
+}
+
+/* ============================ */
+
+.sidebar::after{
+
+content:"";
+
+position:absolute;
+
+right:-80px;
+
+top:-120px;
+
+width:220px;
+
+height:220px;
+
+background:
+
+radial-gradient(
+circle,
+rgba(79,140,255,.22),
+transparent 70%
+);
+
+pointer-events:none;
+
+}
+
+/* ============================ */
+
+@media(max-width:900px){
+
+.sidebar{
+
+position:fixed;
+
+left:-280px;
+
+transition:.35s;
+
+z-index:1000;
+
+}
+
+.sidebar.show{
+
+left:0;
+
+}
+
+}

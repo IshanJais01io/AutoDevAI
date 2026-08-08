@@ -1,5 +1,8 @@
 import os
 
+from core.score_engine import ScoreEngine
+from storage.models import save_scan
+
 
 class FinalReportAgent:
 
@@ -15,6 +18,48 @@ class FinalReportAgent:
             memory
         )
 
+        scores = ScoreEngine().calculate(
+            memory
+        )
+
+        scan = {
+
+            "repository": memory.get(
+                "repo_path"
+            ),
+
+            "language": memory.get(
+                "language"
+            ),
+
+            "files": len(
+                memory.get(
+                    "files"
+                ) or []
+            ),
+
+            "score": scores[
+                "overall"
+            ],
+
+            "security": scores[
+                "security"
+            ],
+
+            "testing": scores[
+                "testing"
+            ],
+
+            "documentation": scores[
+                "documentation"
+            ]
+
+        }
+
+        save_scan(
+            scan
+        )
+
         self.save_report(
             report
         )
@@ -24,7 +69,9 @@ class FinalReportAgent:
             report
         )
 
-        print("Final report generated")
+        print(
+            "Final report generated"
+        )
 
     def generate_report(
         self,

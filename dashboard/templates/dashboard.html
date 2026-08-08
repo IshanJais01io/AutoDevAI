@@ -1,0 +1,692 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | AutoDevAI{% endblock %}
+
+{% block content %}
+
+<!-- ====================================================== -->
+<!-- HERO -->
+<!-- ====================================================== -->
+
+<section class="hero">
+
+    <div class="hero-left">
+
+        <div class="hero-badge">
+            AI-Native Repository Intelligence Platform
+        </div>
+
+        <h1>
+            Analyze.
+            Secure.
+            Improve.
+        </h1>
+
+        <p>
+            Scan any GitHub repository using AI. Generate security,
+            testing, documentation and quality insights in seconds.
+        </p>
+
+        <div class="repo-search">
+
+            <input
+                id="repoInput"
+                placeholder="Paste GitHub Repository URL..."
+                type="text"
+            >
+
+            <button id="scanButton">
+
+                Analyze Repository →
+
+            </button>
+
+        </div>
+
+        <div class="hero-stats">
+
+            <div class="mini-card">
+
+                <h3>428</h3>
+
+                <span>Files</span>
+
+            </div>
+
+            <div class="mini-card">
+
+                <h3>157</h3>
+
+                <span>Python Files</span>
+
+            </div>
+
+            <div class="mini-card">
+
+                <h3>98%</h3>
+
+                <span>Health</span>
+
+            </div>
+
+            <div class="mini-card">
+
+                <h3>6</h3>
+
+                <span>AI Agents</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="hero-right">
+
+        <div class="score-circle">
+
+            <div class="circle-inner">
+
+                <h1 id="healthScore">
+
+                    {{ report.score }}
+
+                </h1>
+
+                <span>
+
+                    Repository Health
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ====================================================== -->
+<!-- LIVE SCANNER -->
+<!-- ====================================================== -->
+
+<section class="scan-card">
+
+    <div class="scan-top">
+
+        <div>
+
+            <h2>
+
+                Live Scan Progress
+
+            </h2>
+
+            <small>
+
+                Planner → Reviewer → Security → Testing
+
+            </small>
+
+        </div>
+
+        <span id="scanStatus">
+
+            Ready
+
+        </span>
+
+    </div>
+
+    <div class="progress">
+
+        <div id="progressBar" class="progress-fill">
+
+        </div>
+
+    </div>
+
+    <div class="scan-steps">
+
+        <div id="step1">Planner</div>
+
+        <div id="step2">Reviewer</div>
+
+        <div id="step3">Security</div>
+
+        <div id="step4">Testing</div>
+
+        <div id="step5">Documentation</div>
+
+        <div id="step6">Report</div>
+
+    </div>
+
+</section>
+
+<!-- ====================================================== -->
+<!-- METRICS -->
+<!-- ====================================================== -->
+
+<section class="metric-grid">
+
+<div class="metric-card">
+
+<div class="metric-icon">
+
+🐙
+
+</div>
+
+<span>
+
+Repository
+
+</span>
+
+<h3>
+
+{{ report.repository }}
+
+</h3>
+
+<div class="progress-line">
+
+<span style="width:100%"></span>
+
+</div>
+
+</div>
+
+<div class="metric-card">
+
+<div class="metric-icon">
+
+🐍
+
+</div>
+
+<span>
+
+Language
+
+</span>
+
+<h3>
+
+{{ report.language }}
+
+</h3>
+
+<div class="status">
+
+Python Project
+
+</div>
+
+</div>
+
+<div class="metric-card">
+
+<div class="metric-icon">
+
+📂
+
+</div>
+
+<span>
+
+Files
+
+</span>
+
+<h3>
+
+{{ report.files }}
+
+</h3>
+
+<div class="progress-line">
+
+<span style="width:88%"></span>
+
+</div>
+
+</div>
+
+<div class="metric-card">
+
+<div class="metric-icon">
+
+❤️
+
+</div>
+
+<span>
+
+Health
+
+</span>
+
+<h3>
+
+{{ report.score }}%
+
+</h3>
+
+<div class="progress-line">
+
+<span style="width:98%"></span>
+
+</div>
+
+</div>
+
+<div class="metric-card success">
+
+<div class="metric-icon">
+
+🛡
+
+</div>
+
+<span>
+
+Security
+
+</span>
+
+<h3>
+
+{{ report.security }}%
+
+</h3>
+
+<div class="progress-line">
+
+<span style="width:92%"></span>
+
+</div>
+
+</div>
+
+<div class="metric-card info">
+
+<div class="metric-icon">
+
+📘
+
+</div>
+
+<span>
+
+Documentation
+
+</span>
+
+<h3>
+
+{{ report.documentation }}%
+
+</h3>
+
+<div class="progress-line">
+
+<span style="width:95%"></span>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ====================================================== -->
+<!-- ANALYTICS -->
+<!-- ====================================================== -->
+
+<section class="analytics-grid">
+
+<div class="glass-card">
+
+<div class="card-header">
+
+<h2>
+
+Repository Quality
+
+</h2>
+
+<button>
+
+Expand
+
+</button>
+
+</div>
+
+<canvas id="scoreChart"></canvas>
+
+</div>
+
+<div class="glass-card ai-card">
+
+<div class="ai-header">
+
+🤖 AI Assistant
+
+</div>
+
+<div class="recommendation">
+
+<h3>
+
+Top Recommendation
+
+</h3>
+
+<p>
+
+Increase unit testing around reviewer.py
+to improve confidence and maintainability.
+
+</p>
+
+</div>
+
+<div class="recommendation">
+
+<h3>
+
+Security
+
+</h3>
+
+<p>
+
+Review database access layer for parameterized
+queries.
+
+</p>
+
+</div>
+
+<button>
+
+Generate Full AI Report
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ====================================================== -->
+<!-- SECOND ROW -->
+<!-- ====================================================== -->
+
+<section class="analytics-grid">
+
+<div class="glass-card">
+
+<div class="card-header">
+
+<h2>
+
+Quality Distribution
+
+</h2>
+
+</div>
+
+<canvas id="doughnutChart"></canvas>
+
+</div>
+
+<div class="glass-card">
+
+<div class="card-header">
+
+<h2>
+
+Recent Activity
+
+</h2>
+
+</div>
+
+<div class="activity">
+
+<div>
+
+✅ Planner Completed
+
+</div>
+
+<div>
+
+🤖 AI Review Finished
+
+</div>
+
+<div>
+
+🛡 Security Scan Completed
+
+</div>
+
+<div>
+
+📘 Documentation Generated
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ====================================================== -->
+<!-- FINDINGS -->
+<!-- ====================================================== -->
+
+<section class="glass-card">
+
+<div class="card-header">
+
+<h2>
+
+AI Findings
+
+</h2>
+
+<button>
+
+View All
+
+</button>
+
+</div>
+
+<table class="modern-table">
+
+<thead>
+
+<tr>
+
+<th>Severity</th>
+
+<th>Category</th>
+
+<th>Confidence</th>
+
+<th>Status</th>
+
+<th>Recommendation</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+🔴 High
+
+</td>
+
+<td>
+
+Security
+
+</td>
+
+<td>
+
+97%
+
+</td>
+
+<td>
+
+Open
+
+</td>
+
+<td>
+
+Use parameterized SQL queries
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+🟡 Medium
+
+</td>
+
+<td>
+
+Performance
+
+</td>
+
+<td>
+
+93%
+
+</td>
+
+<td>
+
+Pending
+
+</td>
+
+<td>
+
+Split long functions
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+🟢 Low
+
+</td>
+
+<td>
+
+Documentation
+
+</td>
+
+<td>
+
+88%
+
+</td>
+
+<td>
+
+Resolved
+
+</td>
+
+<td>
+
+Improve API docstrings
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<!-- ====================================================== -->
+<!-- HISTORY -->
+<!-- ====================================================== -->
+
+<section class="glass-card">
+
+<div class="card-header">
+
+<h2>
+
+Recent Repository Scans
+
+</h2>
+
+<button>
+
+View History
+
+</button>
+
+</div>
+
+<table
+id="historyTable"
+class="modern-table">
+
+<thead>
+
+<tr>
+
+<th>Repository</th>
+
+<th>Score</th>
+
+<th>Security</th>
+
+<th>Date</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+</tbody>
+
+</table>
+
+</section>
+
+{% endblock %}

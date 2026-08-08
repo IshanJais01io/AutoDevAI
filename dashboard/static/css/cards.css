@@ -1,0 +1,543 @@
+/* ==========================================================
+   AutoDevAI Dashboard Cards
+   Inspired by Vercel • Linear • GitHub • Cursor
+==========================================================*/
+
+/* ==========================================================
+   Metric Grid
+==========================================================*/
+
+.metric-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:24px;
+
+}
+
+/* ==========================================================
+   Card
+==========================================================*/
+
+.metric-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:28px;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.06),
+            rgba(255,255,255,.03)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    transition:.35s;
+
+    min-height:180px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+}
+
+/* glow */
+
+.metric-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+    height:240px;
+
+    border-radius:50%;
+
+    top:-120px;
+    right:-120px;
+
+    opacity:.15;
+
+    background:
+
+    radial-gradient(circle,#4F8CFF,transparent 70%);
+
+    transition:.4s;
+
+}
+
+/* moving border */
+
+.metric-card::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+padding:1px;
+
+border-radius:24px;
+
+background:
+
+linear-gradient(
+130deg,
+transparent,
+rgba(255,255,255,.20),
+transparent
+);
+
+mask:
+linear-gradient(#fff 0 0) content-box,
+linear-gradient(#fff 0 0);
+
+mask-composite:exclude;
+
+pointer-events:none;
+
+}
+
+/* hover */
+
+.metric-card:hover{
+
+transform:
+
+translateY(-10px)
+scale(1.02);
+
+box-shadow:
+
+0 25px 60px rgba(0,0,0,.35);
+
+}
+
+.metric-card:hover::before{
+
+transform:scale(1.3);
+
+opacity:.30;
+
+}
+
+/* ========================================================== */
+
+.metric-card span{
+
+font-size:14px;
+
+font-weight:600;
+
+color:#8FA5C7;
+
+letter-spacing:.4px;
+
+text-transform:uppercase;
+
+}
+
+/* ========================================================== */
+
+.metric-card h3{
+
+margin-top:18px;
+
+font-size:34px;
+
+font-weight:800;
+
+line-height:1.2;
+
+}
+
+/* ==========================================================
+   Bottom Label
+==========================================================*/
+
+.metric-card small{
+
+margin-top:auto;
+
+font-size:13px;
+
+color:#94A3B8;
+
+}
+
+/* ==========================================================
+   Floating icon
+==========================================================*/
+
+.metric-card .icon{
+
+position:absolute;
+
+right:26px;
+
+top:24px;
+
+font-size:42px;
+
+opacity:.15;
+
+animation:
+
+floatCard 6s ease infinite;
+
+}
+
+@keyframes floatCard{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ==========================================================
+Repository
+==========================================================*/
+
+.metric-card:nth-child(1)::before{
+
+background:
+
+radial-gradient(
+
+circle,
+
+#4F8CFF,
+
+transparent 70%
+
+);
+
+}
+
+/* ==========================================================
+Language
+==========================================================*/
+
+.metric-card:nth-child(2)::before{
+
+background:
+
+radial-gradient(
+
+circle,
+
+#FFD43B,
+
+transparent 70%
+
+);
+
+}
+
+/* ==========================================================
+Files
+==========================================================*/
+
+.metric-card:nth-child(3)::before{
+
+background:
+
+radial-gradient(
+
+circle,
+
+#00D4FF,
+
+transparent 70%
+
+);
+
+}
+
+/* ==========================================================
+Score
+==========================================================*/
+
+.metric-card:nth-child(4)::before{
+
+background:
+
+radial-gradient(
+
+circle,
+
+#7C3AED,
+
+transparent 70%
+
+);
+
+}
+
+/* ==========================================================
+Security
+==========================================================*/
+
+.metric-card.success::before{
+
+background:
+
+radial-gradient(
+
+circle,
+
+#22C55E,
+
+transparent 70%
+
+);
+
+}
+
+/* ==========================================================
+Documentation
+==========================================================*/
+
+.metric-card.info::before{
+
+background:
+
+radial-gradient(
+
+circle,
+
+#06B6D4,
+
+transparent 70%
+
+);
+
+}
+
+/* ==========================================================
+Animated Progress
+==========================================================*/
+
+.progress-line{
+
+margin-top:18px;
+
+height:10px;
+
+border-radius:999px;
+
+overflow:hidden;
+
+background:
+
+rgba(255,255,255,.08);
+
+}
+
+.progress-line span{
+
+display:block;
+
+height:100%;
+
+width:0;
+
+border-radius:999px;
+
+background:
+
+linear-gradient(
+90deg,
+#4F8CFF,
+#8B5CF6
+);
+
+animation:
+
+progressFill 2s ease forwards;
+
+}
+
+@keyframes progressFill{
+
+to{
+
+width:95%;
+
+}
+
+}
+
+/* ==========================================================
+Status Badge
+==========================================================*/
+
+.status{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:8px 14px;
+
+margin-top:18px;
+
+border-radius:999px;
+
+background:
+
+rgba(34,197,94,.12);
+
+color:#4ADE80;
+
+font-size:13px;
+
+font-weight:700;
+
+}
+
+.status::before{
+
+content:"";
+
+width:10px;
+
+height:10px;
+
+border-radius:50%;
+
+background:#22C55E;
+
+box-shadow:
+
+0 0 12px #22C55E;
+
+animation:
+
+pulse 1.8s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{
+
+transform:scale(.8);
+
+opacity:.6;
+
+}
+
+50%{
+
+transform:scale(1.2);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:scale(.8);
+
+opacity:.6;
+
+}
+
+}
+
+/* ==========================================================
+Number Animation
+==========================================================*/
+
+.metric-card h3{
+
+animation:
+
+fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:
+
+translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:
+
+translateY(0);
+
+}
+
+}
+
+/* ==========================================================
+Responsive
+==========================================================*/
+
+@media(max-width:900px){
+
+.metric-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.metric-card{
+
+min-height:160px;
+
+}
+
+.metric-card h3{
+
+font-size:28px;
+
+}
+
+}
